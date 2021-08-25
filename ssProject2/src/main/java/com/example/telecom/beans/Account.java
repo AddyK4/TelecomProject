@@ -16,7 +16,8 @@ import com.sun.istack.NotNull;
 @Table(name = "account")
 public class Account {
 	
-	//Attributes
+	//testing commit changes
+	//Attributes 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "account_id")
