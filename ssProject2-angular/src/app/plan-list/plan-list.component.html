@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<div><h1>Plan List</h1></div>
+<div id="plan-list">
+    <table id="plan-table" class="table">
+        <tr>
+            <th>Max Lines</th>
+            <th>Price</th>
+        </tr>
+        <tr *ngFor="let plan of plans">
+            <td>{{plan.maxLines}}</td>
+            <td>{{plan.price}}</td>
+        </tr>
+    </table>
+</div>

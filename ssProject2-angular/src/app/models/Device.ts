@@ -1,4 +1,4 @@
-import Plan from "./plan";
+import Plan from "./Plan";
 
 class Device {
     id: number;

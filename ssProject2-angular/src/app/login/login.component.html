@@ -1,0 +1,25 @@
+<head>
+    <meta charset="utf-8">
+    <title>Paper Stack</title>
+</head>
+    <body>
+    <div class="container">
+      <section id="content">
+        <form action="">
+          <h1>Login Form</h1>
+          <div>
+            <input name="email" type="text" [(ngModel)]="email" placeholder="Username" required="" id="username" />
+          </div>
+          <div>
+            <input name="password" type="password" [(ngModel)]="password" placeholder="Password" required="" id="password" />
+          </div>
+          <div>
+            <input type="submit" (click)="buttonLogin(email, password)" value="Log in" />
+            <a href="#">Lost your password?</a>
+            <a href="#">Register</a>
+          </div>
+        </form><!-- form -->
+        
+      </section><!-- content -->
+    </div><!-- container -->
+    </body>

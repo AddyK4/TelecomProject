@@ -1,4 +1,4 @@
-import Account from "./account";
+import Account from "./Account";
 
 class Plan {
     id: number;
