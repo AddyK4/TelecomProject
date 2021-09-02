@@ -1,5 +1,6 @@
 package com.example.telecom.beans;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,14 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "account")
 public class Account {
 	
-	//testing commit changes
-	//Attributes 
+	//Attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "account_id")
@@ -30,22 +31,12 @@ public class Account {
 	@NotNull
 	private String password;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "account")
-	private Set<Plan> plans; 
+	private Set<AccountPlan> accountPlans = new HashSet<>(); 
 
 	//Constructors
 	public Account() {
-	}
-	
-	public Account(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
-	
-	public Account(String email, String password, Set<Plan> plans) {
-		this.email = email;
-		this.password = password;
-		this.plans = plans;
 	}
 
 	//Getters and Setters
@@ -73,11 +64,11 @@ public class Account {
 		this.password = password;
 	}
 
-	public Set<Plan> getPlans() {
-		return plans;
+	public Set<AccountPlan> getAccountPlans() {
+		return accountPlans;
 	}
 
-	public void setPlans(Set<Plan> plans) {
-		this.plans = plans;
+	public void setAccountPlans(Set<AccountPlan> accountPlans) {
+		this.accountPlans = accountPlans;
 	}
 }

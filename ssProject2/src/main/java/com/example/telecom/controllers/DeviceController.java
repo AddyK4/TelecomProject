@@ -39,11 +39,11 @@ public class DeviceController {
 		return service.findDeviceById(deviceId);
 	}
 	
-	@PutMapping(value = "{deviceId}/addDevice/{planId}")
-	public Plan deviceEnrollment(@PathVariable int deviceId, @PathVariable int planId) {
-		Device d = service.findDeviceById(deviceId);
-		Plan p = service.findPlanById(planId);
-		service.putDeviceToPlan(d, p);
-		return service.findPlanById(planId);
-	}
+//	@PutMapping(value = "{deviceId}/addDevice/{planId}")
+//	public Plan deviceEnrollment(@PathVariable int deviceId, @PathVariable int planId) {
+//		Device d = service.findDeviceById(deviceId);
+//		Plan p = service.findPlanById(planId);
+//		service.putDeviceToAccountPlan(d, p);
+//		return service.findPlanById(planId);
+//	}
 }

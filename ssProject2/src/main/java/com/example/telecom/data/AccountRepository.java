@@ -7,5 +7,5 @@ import com.example.telecom.beans.Account;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer>{
-
+	public Account findByEmail(String email);
 }

@@ -30,7 +30,7 @@ public class PlanController {
 		return service.savePlan(plan);
 	}
 	
-	@GetMapping(value = "/plans")
+	@GetMapping
 	public List<Plan> getAllPlans() {
 		return service.findAllPlans();
 	}
@@ -40,11 +40,11 @@ public class PlanController {
 		return service.findPlanById(planId);
 	}
 	
-	@PutMapping(value = "{planId}/addPlan/{accountId}")
-	public Account PlanEnrollment(@PathVariable int planId, @PathVariable int accountId) {
-		Plan p = service.findPlanById(planId);
-		Account a = service.findAccountById(accountId);
-		service.putPlanToAccount(p, a);
-		return service.findAccountById(accountId);
-	}
+//	@PutMapping(value = "{planId}/addPlan/{accountId}")
+//	public Account PlanEnrollment(@PathVariable int planId, @PathVariable int accountId) {
+//		Plan p = service.findPlanById(planId);
+//		Account a = service.findAccountById(accountId);
+//		service.putPlanToAccount(p, a);
+//		return service.findAccountById(accountId);
+//	}
 }

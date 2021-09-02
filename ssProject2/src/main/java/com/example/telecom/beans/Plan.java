@@ -1,5 +1,8 @@
 package com.example.telecom.beans;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -29,20 +34,14 @@ public class Plan {
 	@NotNull
 	private double price;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "account_id", referencedColumnName = "account_id")
-	private Account account;
+	@JsonBackReference
+	@OneToMany(mappedBy = "plan")
+	private Set<AccountPlan> accountPlans = new HashSet<>();
 
 	//Constructors
 	public Plan() {
 	}
 	
-	public Plan(int maxLines, double price, Account account) {
-		this.maxLines = maxLines;
-		this.price = price;
-		this.account = account;
-	}
-
 	//Getters and Setters
 	public int getPlanId() {
 		return planId;
@@ -68,13 +67,11 @@ public class Plan {
 		this.price = price;
 	}
 
-	public Account getAccount() {
-		return account;
+	public Set<AccountPlan> getAccountPlans() {
+		return accountPlans;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccountPlans(Set<AccountPlan> accountPlans) {
+		this.accountPlans = accountPlans;
 	}
-	
-	
 }

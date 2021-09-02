@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.telecom.beans.Account;
+import com.example.telecom.beans.AccountPlan;
 import com.example.telecom.beans.Device;
 import com.example.telecom.beans.Plan;
+import com.example.telecom.data.AccountPlanRepository;
 import com.example.telecom.data.AccountRepository;
 import com.example.telecom.data.DeviceRepository;
 import com.example.telecom.data.PlanRepository;
@@ -22,6 +24,8 @@ public class TelecomSerivce {
 	private PlanRepository planRepository;
 	@Autowired
 	private DeviceRepository deviceRepository;
+	@Autowired
+	private AccountPlanRepository APRepository;
 	
 	//Account ------------------------------
 	public Account saveAccount(Account account) {
@@ -45,6 +49,10 @@ public class TelecomSerivce {
 		return optional.isPresent() ? optional.get() : null;
 	}
 	
+	public Account findByEmail(String email) {
+		return accountRepository.findByEmail(email);
+	}
+	
 	//Plan -------------------------
 	public Plan savePlan(Plan plan) {
 		return planRepository.save(plan);
@@ -66,11 +74,6 @@ public class TelecomSerivce {
 	public Plan findPlanById(Integer id) {
 		Optional<Plan> optional = planRepository.findById(id);
 		return optional.isPresent() ? optional.get() : null;
-	}
-
-	public Plan putPlanToAccount(Plan p, Account a) {
-		p.setAccount(a);
-		return planRepository.save(p);
 	}
 	
 	//Device -------------------------
@@ -98,8 +101,8 @@ public class TelecomSerivce {
 		return optional.isPresent() ? optional.get() : null;
 	}
 	
-	public Device putDeviceToPlan(Device d, Plan p){
-		d.setPlan(p);
+	public Device putDeviceToAccountPlan(Device d, AccountPlan p){
+		d.setAccountPlan(p);
 		return deviceRepository.save(d);
 	}
 

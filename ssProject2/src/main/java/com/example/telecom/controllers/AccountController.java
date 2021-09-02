@@ -3,12 +3,15 @@ package com.example.telecom.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.telecom.beans.Account;
@@ -34,7 +37,7 @@ public class AccountController {
 		return service.saveAccount(account);
 	}
 	
-	@GetMapping("/account")
+	@GetMapping
 	public List<Account> findAll() {
 		return service.findAllAccounts();
 	}
@@ -53,5 +56,10 @@ public class AccountController {
 			}
 		}
 		return null;
+	}
+	
+	@GetMapping("/account")
+	public ResponseEntity<Account> findAccountByEmail(@RequestParam String email) {
+		return new ResponseEntity<>(service.findByEmail(email), HttpStatus.OK);
 	}
 }
